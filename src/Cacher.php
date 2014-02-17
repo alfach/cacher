@@ -66,5 +66,29 @@ class Cacher {
     {
         return $this->get($key) ?: $this->put($key, $value, $time);
     }
+    
+    public function hits()
+    {
+        $hits = $this->backend->hits();
+        
+        if($this->next)
+        {
+            $hits += $this->next->hits();
+        }
+        
+        return $hits;
+    }
+    
+    public function misses()
+    {
+        $misses = $this->backend->misses();
+        
+        if($this->next)
+        {
+            $misses += $this->next->misses();
+        }
+        
+        return $misses;
+    }
 }
 
