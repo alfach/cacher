@@ -1,0 +1,23 @@
+{
+    "name": "joegreen0991/cacher",
+    "type": "library",
+    "description": "Cache component based on laravel's",
+    "autoload": {
+        "psr-0": { 
+            "Cacher": "src"
+         }
+    },
+    "minimum-stability": "dev",
+    "require" : {
+       
+    },
+    "suggest" : {
+        "predis/predis" : "*"
+    },
+    "require-dev" : {
+        "phpunit/phpunit" : "*",
+        "codeception/specify" : "*",
+        "mockery/mockery": "dev-master@dev",
+        "predis/predis": "*"
+    }
+}
