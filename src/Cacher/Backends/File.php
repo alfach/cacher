@@ -16,7 +16,7 @@ class File extends BackendTimedAbstract {
 
     public function __construct($path, $namespace = '')
     {
-        $this->path = realpath($path) . DIRECTORY_SEPARATOR;
+        $this->path = $path . DIRECTORY_SEPARATOR;
 
         $namespace and $this->path .= $namespace . DIRECTORY_SEPARATOR;
     }
