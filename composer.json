@@ -21,4 +21,5 @@
         "predis/predis": "*",
         "satooshi/php-coveralls": "dev-master"
     }
+    
 }
