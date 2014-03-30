@@ -103,7 +103,10 @@ class File extends BackendTimedAbstract {
         try {
             mkdir(dirname($path), 0777, true);
         } catch (\Exception $e) {
-            //
+            if(!is_dir(dirname($path)))
+            {
+                throw $e;
+            }
         }
     }
 
