@@ -15,7 +15,6 @@
         "predis/predis" : "*"
     },
     "require-dev" : {
-        "phpunit/phpunit" : "*",
         "codeception/specify" : "*",
         "mockery/mockery": "dev-master@dev",
         "predis/predis": "*",
