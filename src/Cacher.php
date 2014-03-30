@@ -90,5 +90,10 @@ class Cacher {
         
         return $misses;
     }
+    
+    public function key($key)
+    {
+        return $this->backend->key($key);
+    }
 }
 
