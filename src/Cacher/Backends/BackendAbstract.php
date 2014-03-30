@@ -13,7 +13,7 @@ abstract class BackendAbstract implements BackendInterface {
         $this->namespace = $namespace ? ($namespace . ':') : '';
     }
     
-    protected function key($key)
+    public function key($key)
     {
         return $this->namespace . $key;
     }

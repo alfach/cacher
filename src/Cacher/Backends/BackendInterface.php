@@ -14,4 +14,6 @@ interface BackendInterface {
     
     public function keep($key, $time = null);
     
+    public function key($key);
+    
 }

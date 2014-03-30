@@ -116,7 +116,7 @@ class File extends BackendTimedAbstract {
      * @param  string  $key
      * @return string
      */
-    protected function key($key)
+    public function key($key)
     {
         $parts = array_slice(str_split($hash = md5($key), static::SUBDIRECTORIES), 0, static::SUBDIRECTORIES);
 
