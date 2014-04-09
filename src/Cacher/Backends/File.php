@@ -101,9 +101,11 @@ class File extends BackendTimedAbstract {
     protected function createCacheDirectory($path)
     {        
         try {
-            mkdir(dirname($path), 0777, true);
+            $dir = dirname($path);
+            
+            is_dir($dir) or mkdir($dir, 0777, true);
         } catch (\Exception $e) {
-            if(!is_dir(dirname($path)))
+            if(!is_dir($dir))
             {
                 throw $e;
             }
