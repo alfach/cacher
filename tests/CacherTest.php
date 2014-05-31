@@ -32,6 +32,24 @@ class CacherTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1234, $result);
         
     }
+
+    public function testObjectArrayAccessWorks()
+    {
+        list($cache, $backend) = $this->createObject();
+
+        $backend->shouldReceive('put')->with('test', 1234, null);
+
+        $cache['test'] = 1234;
+
+
+
+        $backend->shouldReceive('get')->with('test')->andReturn(1234);
+
+        $result = $cache['test'];
+
+        $this->assertEquals(1234, $result);
+
+    }
     
     public function testObjectCallsPutAndReturnsPlainValueAndClosure()
     {

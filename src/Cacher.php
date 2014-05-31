@@ -2,7 +2,7 @@
 
 use Cacher\Backends\BackendInterface;
 
-class Cacher {
+class Cacher implements \ArrayAccess {
     
     protected $backend;
     
@@ -94,6 +94,39 @@ class Cacher {
     public function key($key)
     {
         return $this->backend->key($key);
+    }
+
+    /**
+     * @param mixed $key
+     * @param mixed $value
+     */
+    public function offsetSet($key, $value)
+    {
+        $this->put($key, $value);
+    }
+
+    /*
+     *
+     */
+    public function offsetGet($key)
+    {
+        return $this->get($key);
+    }
+
+    /*
+     *
+     */
+    public function offsetExists($key)
+    {
+        return (bool)$this->get($key);
+    }
+
+    /**
+     * @param mixed $key
+     */
+    public function offsetUnset($key)
+    {
+        $this->delete($key);
     }
 }
 

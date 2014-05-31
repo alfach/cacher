@@ -52,7 +52,7 @@ class RedisTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals($test, $mem->get('test'));
         
-        sleep($ttl);
+        sleep($ttl + 1);
         
         $this->assertNull($mem->get('test'));
         
