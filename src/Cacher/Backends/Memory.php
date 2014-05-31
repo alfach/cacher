@@ -2,7 +2,7 @@
 
 class Memory extends BackendTimedAbstract {
     
-    private $store = array();
+    protected $store = array();
     
     public function get($key)
     {
