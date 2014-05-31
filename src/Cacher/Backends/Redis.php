@@ -54,4 +54,11 @@ class Redis extends BackendAbstract {
         
         $time ? $this->redis->expire($key, $time) : $this->redis->persist($key);
     }
+
+    public function ttl($key)
+    {
+        $key = $this->key($key);
+
+        $this->redis->ttl($key);
+    }
 }

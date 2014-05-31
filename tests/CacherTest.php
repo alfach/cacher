@@ -151,6 +151,10 @@ class CacherTest extends PHPUnit_Framework_TestCase
         $backend->shouldReceive('get')->with('test')->andReturn(null);
         
         $next->shouldReceive('get')->with('test')->andReturn(1234);
+
+        $next->shouldReceive('ttl')->with('test')->andReturn(10);
+
+        $backend->shouldReceive('put')->with('test', 1234, 10);
         
         $result = $cache->get('test');
         

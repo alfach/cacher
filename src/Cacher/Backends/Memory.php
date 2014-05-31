@@ -52,4 +52,12 @@ class Memory extends BackendTimedAbstract {
             $this->store[$key][0] = $this->expiration($time);
         }
     }
+
+    public function ttl($key)
+    {
+        if(isset($this->store[$key]))
+        {
+            return $this->getTtl($this->store[$key][0]);
+        }
+    }
 }

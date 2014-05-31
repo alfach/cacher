@@ -21,4 +21,9 @@ class Dummy extends BackendAbstract {
     {        
         
     }
+
+    public function ttl($key)
+    {
+        return 0;
+    }
 }

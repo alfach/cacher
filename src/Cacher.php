@@ -18,13 +18,15 @@ class Cacher implements \ArrayAccess {
     public function get($key)
     {
         $result = $this->backend->get($key);
-        
-        
+
         if(is_null($result) && $this->next)
         {
-            return $this->next->get($key);
+            if(!is_null($result = $this->next->get($key)))
+            {
+                $this->backend->put($key, $result, $this->next->ttl($key));
+            }
         }
-        
+
         return $result;
     }
     
@@ -65,6 +67,11 @@ class Cacher implements \ArrayAccess {
     public function remember($key, $value, $time = null)
     {
         return $this->get($key) ?: $this->put($key, $value, $time);
+    }
+
+    public function ttl($key)
+    {
+        return $this->backend->ttl($key);
     }
     
     public function hits()

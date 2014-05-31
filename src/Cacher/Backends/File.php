@@ -125,4 +125,11 @@ class File extends BackendTimedAbstract {
         return $this->path . join(DIRECTORY_SEPARATOR, $parts) . DIRECTORY_SEPARATOR . $hash;
     }
 
+    public function ttl($key)
+    {
+        #TODO
+        //$time = gettime($key);
+        //return $this->getTtl($time);
+    }
+
 }
