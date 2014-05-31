@@ -1,12 +1,10 @@
 <?php namespace Cacher\Backends;
 
-use Predis\Client;
-
 class Redis extends BackendAbstract {
     
     private $redis;
         
-    public function __construct(Client $redis, $namespace = '')
+    public function __construct($redis, $namespace = '')
     {
         $this->redis = $redis;
         
@@ -27,12 +25,19 @@ class Redis extends BackendAbstract {
     public function put($key, $value, $time = null)
     {        
         $key = $this->key($key);
-        
-        $this->redis->pipeline(function($pipe) use($key, $value, $time){
-            $pipe->set($key, serialize($value));
-            $time and $pipe->expire($key, $time);
-        });
-        
+
+        if($time)
+        {
+            $this->redis->multi();
+            $this->redis->set($key, serialize($value));
+            $this->redis->expire($key, $time);
+            $this->redis->exec();
+        }
+        else
+        {
+            $this->redis->set($key, serialize($value));
+        }
+
         return $value;
     }
     
