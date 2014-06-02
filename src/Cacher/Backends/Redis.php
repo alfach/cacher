@@ -28,17 +28,10 @@ class Redis extends BackendAbstract {
 
         if($time)
         {
-            $this->redis->multi();
-            $this->redis->set($key, serialize($value));
-            $this->redis->expire($key, $time);
-            $this->redis->exec();
-        }
-        else
-        {
-            $this->redis->set($key, serialize($value));
+            return $this->redis->setex($key, $time, serialize($value));
         }
 
-        return $value;
+        return $this->redis->set($key, serialize($value));
     }
     
     public function delete($key)
