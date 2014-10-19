@@ -39,7 +39,7 @@ $cache->get('key'); // returns 'value'
 
 $fileBackend = new Cacher\Backends\File('path/to/tmpstorage');
 
-// Uses Predis library
+// Uses any compatible redis library. EG nrk/predis, joegreen0991/irediscent
 $redisBackend = new Cacher\Backends\Redis(new Predis\Client($config));
 
 $stackedCache = new Cacher($redisBackend, new Cacher($fileBackend));
